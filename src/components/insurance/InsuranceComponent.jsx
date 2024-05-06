@@ -19,12 +19,18 @@ const InsuranceComponent = ({handleInsurence}) => {
 
        ( async () => {
         
-            try {
-                const  { Insurances } =  await loadInsurances();
-                setAllInsurances(Insurances)
-            } catch (error) {
-                console.log("Error",error)
-            }
+        
+          const data = {
+            ClassId: null, // TODO: Set
+            SortColumn: "Name", // TODO: Set
+            SortDirection: "Asc", // TODO: Set
+          }
+          try {
+              const  { Insurances } =  await loadInsurances(data);
+              setAllInsurances(Insurances)
+          } catch (error) {
+              console.log("Error",error)
+          }
 
         })();
 

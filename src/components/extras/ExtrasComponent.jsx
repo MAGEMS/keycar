@@ -59,13 +59,17 @@ const ExtrasComponent = (props) => {
     useEffect(() =>{
 
        ( async () => {
-        
-            try {
-                const  { Extras } =  await loadExtras();
-                setAllExtras(Extras)
-            } catch (error) {
-                console.log("Error",error)
-            }
+          const data = {
+            ClassId: null, // TODO: Set
+            SortColumn: "Name", // TODO: Set
+            SortDirection: "Asc", // TODO: Set
+          }
+          try {
+              const  { Extras } =  await loadExtras(data);
+              setAllExtras(Extras)
+          } catch (error) {
+              console.log("Error",error)
+          }
 
         })();
 

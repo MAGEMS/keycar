@@ -8,7 +8,7 @@ import CarPropertes from "@/components/car-list/car-list-v1/CarPropertes";
 
 import MetaComponent from "@/components/common/MetaComponent";
 import { useEffect, useState } from "react";
-import { loadVehicles } from "@/services/apis/vehicle.api";
+import { loadVehicleClasses } from "@/services/apis/vehicle.api";
 
 const metadata = {
   title: "Search Results - Key Car Rental Iceland",
@@ -24,7 +24,12 @@ const CarListPage1 = () => {
 
     try {
 
-      const {Classes = false} =  await loadVehicles();
+      const data = {
+        DateTo: null, // set based on MainFilterSearchBox->DateSearch
+        DateFrom: null, // set based on MainFilterSearchBox->DateSearch,
+        PickupLocationId: null, // set based on MainFilterSearchBox->PickupLocationBox
+      }
+      const {Classes = false} =  await loadVehicleClasses(data);
       if(!Classes) throw new Error('Error While Loading Vehicle');
 
       setVehicles(Classes)
